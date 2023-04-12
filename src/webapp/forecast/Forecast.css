@@ -1,0 +1,47 @@
+:import("../colors.css") {
+  BLACK_1: BLACK_1;
+  WHITE_1: WHITE_1;
+}
+
+.container {
+  background: BLACK_1;
+  color: WHITE_1;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.left-sidebar-container {
+  width: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  position: relative;
+}
+
+.inspector-container {
+  position: relative;
+  width: 275px;
+  z-index: 10;
+}
+
+.chart-container {
+  flex-grow: 1;
+  position: relative;
+  z-index: 4;
+}
+
+.timeline-frame-container {
+  height: 40%;
+  overflow: hidden;
+}

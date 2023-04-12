@@ -1,0 +1,92 @@
+:import("../colors.css") {
+  BLACK_1: BLACK_1;
+  BR_BLUE: BR_BLUE;
+  BR_GREEN: BR_GREEN;
+  DARKBLACK: DARKBLACK;
+  DELBG: DELBG;
+  GREY_1: GREY_1;
+  WHITE_1: WHITE_1;
+}
+
+.container {
+  background: DARKBLACK;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  composes: label from "../text.css";
+  background: BLACK_1;
+  display: flex;
+  flex-direction: row;
+  justify-content: 'space-between';
+  padding-right: 10px;
+}
+
+.header-title {
+  box-sizing: border-box;
+  display: block;
+  flex-grow: 1;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.header-children {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-button {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 5px;
+}
+
+.header-button:hover {
+  opacity: 1;
+}
+
+.content {
+  composes: scrollbar from "../scrollbar.css";
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.greedy-content {
+  composes: content;
+  flex-grow: 10;
+}
+
+.wide-button {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: GREY_1;
+  cursor: pointer;
+  display: block;
+  font-size: 12px;
+  padding: 5px 5px;
+  text-align: left;
+  width: 100%;
+}
+
+.wide-button-EFFECT {
+  color: BR_BLUE;
+}
+
+.wide-button-EVENT-IN {
+  color: BR_GREEN;
+}
+
+.wide-button-EVENT-OUT {
+  color: DELBG;
+}
+
+.wide-button:hover {
+  color: WHITE_1;
+}

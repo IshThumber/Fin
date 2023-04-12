@@ -1,0 +1,59 @@
+{
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "name": "financial-simulator",
+  "license": "MIT",
+  "author": "Ryan N Johnson <ryan@ryannjohnson.com>",
+  "module": "dist/financial-simulator.esm.js",
+  "devDependencies": {
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^25.1.4",
+    "@types/react": "^16.9.23",
+    "@types/react-datepicker": "^2.11.0",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "@types/uuid": "^7.0.0",
+    "autoprefixer": "^9.7.5",
+    "cssnano": "^4.1.10",
+    "postcss-modules": "^1.5.0",
+    "tsdx": "^0.12.3",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "lightweight-charts": "^2.0.0",
+    "react": "^16.13.0",
+    "react-datepicker": "^2.14.0",
+    "react-debounce-render": "^6.0.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "uuid": "^7.0.2"
+  }
+}

@@ -1,0 +1,22 @@
+:import("../../colors.css") {
+  WHITE_1: WHITE_1;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.swap {
+  background: transparent;
+  border: 0 solid transparent;
+  color: WHITE_1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.dropdown-container {
+  composes: input from "../../components/Input.css";
+  width: 100%;
+}

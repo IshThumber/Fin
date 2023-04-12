@@ -1,0 +1,107 @@
+:import("../../colors.css") {
+  ADDBG: ADDBG;
+  DELBG: DELBG;
+  CHANGEBG: CHANGEBG;
+  WARMGREY: WARMGREY;
+  WHITE_1: WHITE_1;
+}
+
+:import("./constants.css") {
+  TRACK_PIXEL_HEIGHT: TRACK_PIXEL_HEIGHT;
+}
+
+.container {
+  background: WARMGREY;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: TRACK_PIXEL_HEIGHT;
+  min-width: 1px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  user-select: none;
+}
+
+.type-EFFECT {
+  background: CHANGEBG;
+}
+
+.type-EVENT-IN {
+  background: ADDBG;
+}
+
+.type-EVENT-OUT {
+  background: DELBG;
+}
+
+.handle {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.selected {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.move-handle {
+  composes: handle;
+  align-items: center;
+  box-sizing: border-box;
+  color: WHITE_1;
+  cursor: grab;
+  display: flex;
+  flex-direction: row;
+  font-size: 11px;
+  height: 50%;
+  padding-left: 5px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.name {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.bottom {
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.accrued-amount {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  left: 0;
+  opacity: .8;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  white-space: nowrap;
+}
+
+.date-handle {
+  composes: handle;
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  width: 5px;
+}
+
+.left-date-handle {
+  composes: date-handle;
+  cursor: w-resize;
+  left: 0;
+  z-index: 4;
+}
+
+.right-date-handle {
+  composes: date-handle;
+  cursor: e-resize;
+  right: 0;
+  z-index: 5;
+}

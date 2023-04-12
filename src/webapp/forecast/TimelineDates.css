@@ -1,0 +1,34 @@
+:import("../colors.css") {
+  DARKGREY_1: DARKGREY_1;
+  LIGHTBLACK2: LIGHTBLACK2;
+  WHITE_2: WHITE_2;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.calendar-input {
+  composes: input from "../components/Input.css";
+  background: transparent;
+  border-color: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  width: 80px;
+}
+
+.calendar-input:hover {
+  border-color: LIGHTBLACK2;
+}
+
+.calendar-input:hover:focus {
+  border-color: DARKGREY_1;
+}
+
+.buffer {
+  padding: 0 .25em;
+}
