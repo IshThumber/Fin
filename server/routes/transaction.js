@@ -15,4 +15,22 @@ router.get("/transactions", async (req, res) => {
   }
 });
 
+router.post('/transactions', async (req, res) => {
+  try {
+    const { buyer, amount, productIds } = req.body;
+
+    const transaction = new Transaction({
+      buyer,
+      amount,
+      productIds,
+    });
+
+    await transaction.save();
+
+    res.status(201).json(transaction);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 export default router;

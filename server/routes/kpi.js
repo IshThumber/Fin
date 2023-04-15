@@ -12,4 +12,16 @@ router.get("/kpis", async (req, res) => {
   }
 });
 
+router.post("/kpis", async (req, res) => {
+  const kpiData = req.body;
+  const kpi = new KPI(kpiData);
+
+  try {
+    await kpi.save();
+    res.status(201).json(kpi);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 export default router;

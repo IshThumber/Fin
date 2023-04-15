@@ -66,9 +66,9 @@ const Row1 = () => {
         <BoxHeader
           title="Revenue and Expenses"
           subtitle="top line represents revenue, bottom line represents expenses"
-          sideText="+4%"
+          sideText=""
         />
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer  width="100%" height="100%">
           <AreaChart
             width={500}
             height={400}
@@ -141,7 +141,7 @@ const Row1 = () => {
         <BoxHeader
           title="Profit and Revenue"
           subtitle="top line represents revenue, bottom line represents expenses"
-          sideText="+4%"
+          sideText=""
         />
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
@@ -196,6 +196,7 @@ const Row1 = () => {
           </LineChart>
         </ResponsiveContainer>
       </DashboardBox>
+      
       <DashboardBox gridArea="c">
         <BoxHeader
           title="Revenue Month by Month"
@@ -205,13 +206,19 @@ const Row1 = () => {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}
-            height={300}
+            height={400}
             data={revenue}
+            // margin={{
+            //   top: 17,
+            //   right: 15,
+            //   left: -5,
+            //   bottom: 58,
+            // }}
             margin={{
-              top: 17,
-              right: 15,
-              left: -5,
-              bottom: 58,
+              top: 20,
+              right: 0,
+              left: -10,
+              bottom: 55,
             }}
           >
             <defs>

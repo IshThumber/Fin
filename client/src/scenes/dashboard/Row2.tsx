@@ -1,7 +1,7 @@
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
-import FlexBetween from "@/components/FlexBetween";
-import { useGetKpisQuery, useGetProductsQuery } from "@/state/api";
+// import FlexBetween from "@/components/FlexBetween";
+import { useGetKpisQuery, useGetProductsQuery,useGetTransactionsQuery } from "@/state/api";
 import { Box, Typography, useTheme } from "@mui/material";
 import React, { useMemo } from "react";
 import {
@@ -12,22 +12,23 @@ import {
   XAxis,
   YAxis,
   Line,
-  PieChart,
-  Pie,
-  Cell,
+  // PieChart,
+  // Pie,
+  // Cell,
   ScatterChart,
   Scatter,
   ZAxis,
 } from "recharts";
-
-const pieData = [
-  { name: "Group A", value: 600 },
-  { name: "Group B", value: 400 },
-];
+import { DataGrid, GridCellParams } from "@mui/x-data-grid";
+// const pieData = [
+//   { name: "Group A", value: 600 },
+//   { name: "Group B", value: 400 },
+// ];
 
 const Row2 = () => {
   const { palette } = useTheme();
-  const pieColors = [palette.primary[800], palette.primary[300]];
+  const { data: transactionData } = useGetTransactionsQuery();
+  // const pieColors = [palette.primary[800], palette.primary[300]];
   const { data: operationalData } = useGetKpisQuery();
   const { data: productData } = useGetProductsQuery();
 
@@ -59,6 +60,31 @@ const Row2 = () => {
     );
   }, [productData]);
 
+  const transactionColumns = [
+    {
+      field: "_id",
+      headerName: "id",
+      flex: 1,
+    },
+    {
+      field: "buyer",
+      headerName: "Buyer",
+      flex: 0.67,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 0.35,
+      renderCell: (params: GridCellParams) => `$${params.value}`,
+    },
+    {
+      field: "productIds",
+      headerName: "Count",
+      flex: 0.1,
+      renderCell: (params: GridCellParams) =>
+        (params.value as Array<string>).length,
+    },
+  ];
   return (
     <>
       <DashboardBox gridArea="d">
@@ -112,55 +138,10 @@ const Row2 = () => {
           </LineChart>
         </ResponsiveContainer>
       </DashboardBox>
-      <DashboardBox gridArea="e">
-        <BoxHeader title="Campaigns and Targets" sideText="+4%" />
-        <FlexBetween mt="0.25rem" gap="1.5rem" pr="1rem">
-          <PieChart
-            width={110}
-            height={100}
-            margin={{
-              top: 0,
-              right: -10,
-              left: 10,
-              bottom: 0,
-            }}
-          >
-            <Pie
-              stroke="none"
-              data={pieData}
-              innerRadius={18}
-              outerRadius={38}
-              paddingAngle={2}
-              dataKey="value"
-            >
-              {pieData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={pieColors[index]} />
-              ))}
-            </Pie>
-          </PieChart>
-          <Box ml="-0.7rem" flexBasis="40%" textAlign="center">
-            <Typography variant="h5">Target Sales</Typography>
-            <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
-              83
-            </Typography>
-            <Typography variant="h6">
-              Finance goals of the campaign that is desired
-            </Typography>
-          </Box>
-          <Box flexBasis="40%">
-            <Typography variant="h5">Losses in Revenue</Typography>
-            <Typography variant="h6">Losses are down 25%</Typography>
-            <Typography mt="0.4rem" variant="h5">
-              Profit Margins
-            </Typography>
-            <Typography variant="h6">
-              Margins are up by 30% from last month.
-            </Typography>
-          </Box>
-        </FlexBetween>
-      </DashboardBox>
+      
+      
       <DashboardBox gridArea="f">
-        <BoxHeader title="Product Prices vs Expenses" sideText="+4%" />
+        <BoxHeader title="Prices vs Expenses" sideText="" />
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart
             margin={{
@@ -198,6 +179,41 @@ const Row2 = () => {
             />
           </ScatterChart>
         </ResponsiveContainer>
+      </DashboardBox>
+
+      <DashboardBox gridArea="e">
+        <BoxHeader
+          title="Recent Purchases"
+          sideText={`${transactionData?.length} latest transactions`}
+        />
+        <Box
+          mt="1rem"
+          p="0 0.5rem"
+          height="80%"
+          sx={{
+            "& .MuiDataGrid-root": {
+              color: palette.grey[300],
+              border: "none",
+            },
+            "& .MuiDataGrid-cell": {
+              borderBottom: `1px solid ${palette.grey[800]} !important`,
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              borderBottom: `1px solid ${palette.grey[800]} !important`,
+            },
+            "& .MuiDataGrid-columnSeparator": {
+              visibility: "hidden",
+            },
+          }}
+        >
+          <DataGrid
+            columnHeaderHeight={25}
+            rowHeight={35}
+            hideFooter={true}
+            rows={transactionData || []}
+            columns={transactionColumns}
+          />
+        </Box>
       </DashboardBox>
     </>
   );
